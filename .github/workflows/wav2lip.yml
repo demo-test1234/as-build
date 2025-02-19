@@ -8,19 +8,19 @@ on:
         required: true
         type: choice
         options:
-          - "ubuntu-latest"
-          - "windows-latest"
-          - "macos-latest"
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
-        os: ubuntu-latest
-        arch: [ amd64, arm64 ]
       fail-fast: false
+      matrix:
+        include:
+          os: ubuntu-latest
+          arch: [ amd64, arm64 ]
 
     steps:
       - name: Checkout Code
