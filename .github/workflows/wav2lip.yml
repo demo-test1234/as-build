@@ -15,11 +15,11 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}-${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu, windows, macos ]
-        arch: [ x86, arm ]
+        os: ${{ fromJson('["' + inputs.os + '"]') }}
+        arch: [ amd64, arm64 ]
       fail-fast: false
 
     steps:
