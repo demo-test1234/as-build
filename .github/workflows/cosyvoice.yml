@@ -50,8 +50,6 @@ jobs:
           GIT_REPO: ${{ secrets.GIT_REPO_COSYVOICE }}
         run: |
           git clone "https://${GIT_USER}:${GIT_PASS}@codeup.aliyun.com/${GIT_REPO}.git" code
-          cd code
-          ls -alh
 
       - name: Git clone repo
         if: runner.os == 'Windows'
@@ -62,8 +60,6 @@ jobs:
         shell: pwsh
         run: |
           git clone "https://${env:GIT_USER}:${env:GIT_PASS}@codeup.aliyun.com/${env:GIT_REPO}.git" code
-          cd code
-          ls -alh
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v3
