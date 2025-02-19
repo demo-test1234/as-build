@@ -1,4 +1,4 @@
-name: wav2lip
+name: cosyvoice
 
 on:
   workflow_dispatch:
