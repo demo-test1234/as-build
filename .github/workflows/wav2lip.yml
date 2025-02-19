@@ -11,6 +11,15 @@ on:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+      uploadType:
+        description: 'Upload Type'
+        required: true
+        type: choice
+        default: None
+        options:
+          - None
+          - QiniuKodo
+          - AliyunOss
 
 jobs:
   build:
