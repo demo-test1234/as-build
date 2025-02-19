@@ -62,6 +62,7 @@ jobs:
 
       - name: Cert Prepare (macOS)
         if: runner.os == 'macOS'
+        working-directory: code
         env:
           MACOS_CERTIFICATE: ${{ secrets.CORP_MACOS_CERTIFICATE }}
           MACOS_CERTIFICATE_PASSWORD: ${{ secrets.CORP_MACOS_CERTIFICATE_PASSWORD }}
@@ -89,22 +90,26 @@ jobs:
 
       - name: Build
         if: runner.os == 'macOS'
+        working-directory: code
         run: |
           ./_aigcpanel/build-osx.sh
 
       - name: Build
         if: runner.os == 'Linux'
+        working-directory: code
         run: |
           ./_aigcpanel/build-linux.sh
 
       - name: Build
         if: runner.os == 'Windows'
+        working-directory: code
         shell: powershell
         run: |
           ./_aigcpanel/build-win.ps1
 
       - name: Set Build Name ( Linux / macOS )
         if: runner.os == 'Linux' || runner.os == 'macOS'
+        working-directory: code
         run: |
           DIST_FILE_NAME=${{ runner.os }}-${{ runner.arch }}-v$(date +%Y%m%d_%H%M%S)-${RANDOM}
           echo ::add-mask::$DIST_FILE_NAME
@@ -112,6 +117,7 @@ jobs:
 
       - name: Set Build Name ( Windows )
         if: runner.os == 'Windows'
+        working-directory: code
         shell: pwsh
         run: |
           $randomNumber = Get-Random -Minimum 10000 -Maximum 99999
@@ -131,7 +137,7 @@ jobs:
           zone: ${{ secrets.KODO_ZONE }}
           callback: ${{ secrets.OSS_CALLBACK }}
           assets: |
-            *.zip:models/aigcpanel-server-cosyvoice-${{ env.DIST_FILE_NAME }}/
+            code/*.zip:models/aigcpanel-server-cosyvoice-${{ env.DIST_FILE_NAME }}/
 
       - name: Upload Oss
         if: github.event.inputs.uploadType == 'AliyunOss'
@@ -144,5 +150,5 @@ jobs:
           bucket: ${{ secrets.OSS_BUCKET }}
           callback: ${{ secrets.OSS_CALLBACK }}
           assets: |
-            *.zip:models/aigcpanel-server-cosyvoice-${{ env.DIST_FILE_NAME }}/
+            code/*.zip:models/aigcpanel-server-cosyvoice-${{ env.DIST_FILE_NAME }}/
 
