@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ${{ github.event.inputs.os }} ]
+        os: ${{ github.event.inputs.os }}
         arch: [ amd64, arm64 ]
       fail-fast: false
 
