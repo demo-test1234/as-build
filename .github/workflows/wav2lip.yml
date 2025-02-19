@@ -8,9 +8,9 @@ on:
         required: true
         type: choice
         options:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+          - "ubuntu-latest"
+          - "windows-latest"
+          - "macos-latest"
 
 jobs:
   build:
