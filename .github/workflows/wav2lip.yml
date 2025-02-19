@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       os:
-        description: 'Choose the operating system'
+        description: 'OS'
         required: true
         type: choice
         options:
@@ -32,6 +32,15 @@ jobs:
         run: |
           echo "OS: ${{ runner.os }}"
           echo "ARCH: ${{ runner.arch }}"
+
+      - name: Git clone repo
+        env:
+          GIT_USER: ${{ secrets.GIT_USER }}
+          GIT_PASS: ${{ secrets.GIT_PASS }}
+          GIT_REPO: ${{ secrets.GIT_REPO_TEST }}
+        run: |
+          git clone "https://${GIT_USER}:${GIT_PASS}@codeup.aliyun.com/${GIT_REPO}.git" code
+          ls -alh
 
 #      - name: docker setup
 #        if: runner.os == 'Linux'
