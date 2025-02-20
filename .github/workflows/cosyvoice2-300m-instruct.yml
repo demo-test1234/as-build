@@ -1,4 +1,4 @@
-name: wav2lip
+name: cosyvoice2-300m-instruct
 
 on:
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
         env:
           GIT_USER: ${{ secrets.GIT_USER }}
           GIT_PASS: ${{ secrets.GIT_PASS }}
-          GIT_REPO: ${{ secrets.GIT_REPO_WAV2LIP }}
+          GIT_REPO: ${{ secrets.GIT_REPO_COSYVOICE2_300M_INSTRUCT }}
         run: |
           git clone "https://${GIT_USER}:${GIT_PASS}@codeup.aliyun.com/${GIT_REPO}.git" code
 
@@ -56,7 +56,7 @@ jobs:
         env:
           GIT_USER: ${{ secrets.GIT_USER }}
           GIT_PASS: ${{ secrets.GIT_PASS }}
-          GIT_REPO: ${{ secrets.GIT_REPO_WAV2LIP }}
+          GIT_REPO: ${{ secrets.GIT_REPO_COSYVOICE2_300M_INSTRUCT }}
         shell: pwsh
         run: |
           git clone "https://${env:GIT_USER}:${env:GIT_PASS}@codeup.aliyun.com/${env:GIT_REPO}.git" code
@@ -146,7 +146,7 @@ jobs:
           zone: ${{ secrets.KODO_ZONE }}
           callback: ${{ secrets.OSS_CALLBACK }}
           assets: |
-            code/*.zip:models/aigcpanel-server-wav2lip-${{ env.DIST_FILE_NAME }}/
+            code/*.zip:models/aigcpanel-server-cosyvoice2-300m-instruct-${{ env.DIST_FILE_NAME }}/
 
       - name: Upload Oss
         if: github.event.inputs.uploadType == 'AliyunOss'
@@ -159,5 +159,5 @@ jobs:
           bucket: ${{ secrets.OSS_BUCKET }}
           callback: ${{ secrets.OSS_CALLBACK }}
           assets: |
-            code/*.zip:models/aigcpanel-server-wav2lip-${{ env.DIST_FILE_NAME }}/
+            code/*.zip:models/aigcpanel-server-cosyvoice2-300m-instruct-${{ env.DIST_FILE_NAME }}/
 
