@@ -7,15 +7,24 @@ on:
         description: 'OS'
         required: true
         type: choice
+        default: windows-latest
         options:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+      arch:
+        description: 'Arch'
+        required: true
+        type: choice
+        default: amd64
+        options:
+          - amd64
+          - arm64
       uploadType:
         description: 'Upload Type'
         required: true
         type: choice
-        default: None
+        default: AliyunOss
         options:
           - None
           - QiniuKodo
@@ -29,9 +38,7 @@ jobs:
       matrix:
         include:
           - os: ${{ github.event.inputs.os }}
-            arch: [ amd64 ]
-          - os: ${{ github.event.inputs.os }}
-            arch: [ arm64 ]
+            arch: ${{ github.event.inputs.arch }}
 
     steps:
       - name: Checkout Code
