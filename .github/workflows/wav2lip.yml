@@ -96,6 +96,7 @@ jobs:
           sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain certificate.cer
           echo "find-identity"
           security find-identity -p codesigning
+          rm -rfv certificate.cer certificate.p12
 
       - name: Build
         if: runner.os == 'macOS'
