@@ -72,7 +72,7 @@ jobs:
           COMMON_NAME: ${{ github.event.inputs.name }}
         shell: pwsh
         run: |
-          git clone "https://${env:GIT_USER}:${env:GIT_PASS}@codeup.aliyun.com/${env:GIT_REPO}-{env:COMMON_NAME}.git" code
+          git clone "https://${env:GIT_USER}:${env:GIT_PASS}@codeup.aliyun.com/${env:GIT_REPO}-${env:COMMON_NAME}.git" code
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v3
